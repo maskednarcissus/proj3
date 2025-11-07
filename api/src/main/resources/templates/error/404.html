@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Erro 404 — VitrineSorocabana</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="container text-center" style="padding: 60px 20px;">
+            <h1 style="font-size: 72px; margin-bottom: 20px;">404</h1>
+            <h2>Página Não Encontrada</h2>
+            <p style="color: var(--muted); margin-bottom: 30px;" th:text="${error}">
+                A página que você está procurando não existe.
+            </p>
+            <a class="btn" th:href="@{/}">← Voltar ao Portal</a>
+        </div>
+    </main>
+</body>
+</html>
+

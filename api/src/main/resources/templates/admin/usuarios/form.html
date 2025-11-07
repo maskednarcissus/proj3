@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${usuario.id != null ? 'Editar Usuário' : 'Novo Usuário'}">Usuário — Admin</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="wrap">
+            <div class="panel">
+                <h1 th:text="${usuario.id != null ? 'Editar Usuário' : 'Novo Usuário'}">Usuário</h1>
+                
+                <form th:action="@{/admin/usuarios}" th:object="${usuario}" method="post">
+                    <input type="hidden" th:field="*{id}">
+                    
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" th:field="*{nome}" class="form-control" required>
+                        <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red;"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" th:field="*{email}" class="form-control" required>
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red;"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" th:field="*{senha}" class="form-control" th:required="${usuario.id == null}">
+                        <span th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" style="color: red;"></span>
+                        <small th:if="${usuario.id != null}">Deixe em branco para manter a senha atual</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="role">Role:</label>
+                        <select id="role" th:field="*{role}" class="form-control">
+                            <option value="ROLE_USER">ROLE_USER</option>
+                            <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" th:field="*{ativo}">
+                            Ativo
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn">Salvar</button>
+                    <a class="btn back" th:href="@{/admin/usuarios}">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+

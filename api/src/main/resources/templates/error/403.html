@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Erro 403 — VitrineSorocabana</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="container text-center" style="padding: 60px 20px;">
+            <h1 style="font-size: 72px; margin-bottom: 20px;">403</h1>
+            <h2>Acesso Negado</h2>
+            <p style="color: var(--muted); margin-bottom: 30px;">
+                Você não tem permissão para acessar esta página.
+            </p>
+            <a class="btn" th:href="@{/}">← Voltar ao Portal</a>
+            <a class="btn" th:href="@{/login}" style="margin-left: 10px;">Fazer Login</a>
+        </div>
+    </main>
+</body>
+</html>
+

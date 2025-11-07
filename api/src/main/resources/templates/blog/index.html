@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title}">Blog — VitrineSorocabana</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="wrap">
+            <h1>📰 Blog — VitrineSorocabana</h1>
+            
+            <article th:each="post : ${posts}" th:if="${post.publicado}">
+                <h2 th:text="${post.titulo}">Título do Post</h2>
+                <p th:text="${#strings.abbreviate(post.conteudo, 200)}">Conteúdo do post...</p>
+                <small th:if="${post.dataPublicacao != null}" 
+                       th:text="'Publicado em: ' + ${#temporals.format(post.dataPublicacao, 'dd/MM/yyyy HH:mm')}">
+                    Publicado em: 01/01/2025
+                </small>
+                <br>
+                <a class="btn" th:href="@{/blog/post/{id}(id=${post.id})}" style="margin-top: 10px;">Ler Mais</a>
+            </article>
+            
+            <!-- Placeholder when no posts -->
+            <div th:if="${#lists.isEmpty(posts)}" class="card">
+                <p class="text-center">Nenhuma publicação disponível no momento.</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+

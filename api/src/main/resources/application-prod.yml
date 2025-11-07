@@ -1,0 +1,44 @@
+spring:
+  # Production Database Configuration (PostgreSQL)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/vitrinedb
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  
+  # H2 Console disabled in production
+  h2:
+    console:
+      enabled: false
+  
+  # Thymeleaf Cache enabled in production
+  thymeleaf:
+    cache: true
+  
+  # DevTools disabled in production
+  devtools:
+    restart:
+      enabled: false
+    livereload:
+      enabled: false
+
+# Server Configuration
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: never
+    include-binding-errors: never
+
+# Logging Configuration
+logging:
+  level:
+    root: WARN
+    br.com.sorocaba: INFO
+    org.springframework.web: INFO
+

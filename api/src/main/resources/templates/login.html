@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — VitrineSorocabana</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <a th:href="@{/}" style="color: inherit; text-decoration: none;">
+                Vitrine<b>Sorocabana</b>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="max-width: 400px;">
+            <div class="card">
+                <h1>Login</h1>
+                
+                <div th:if="${param.error}" style="color: red; margin-bottom: 16px;">
+                    Credenciais inválidas. Tente novamente.
+                </div>
+                
+                <div th:if="${param.logout}" style="color: green; margin-bottom: 16px;">
+                    Você foi desconectado com sucesso.
+                </div>
+                
+                <form th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <label for="username">Email:</label>
+                        <input type="text" id="username" name="username" class="form-control" required autofocus>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                    
+                    <button type="submit" class="btn">Entrar</button>
+                    <a class="btn back" th:href="@{/}">Voltar</a>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 — VitrineSorocabana</p>
+    </footer>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title}">Loja — VitrineSorocabana</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="wrap">
+            <div class="card">
+                <h1>🛍️ Catálogo</h1>
+                <p>Produtos disponíveis na loja.</p>
+                
+                <div class="grid" style="margin-top: 16px;">
+                    <div class="prod" th:each="produto : ${produtos}" th:if="${produto.ativo}">
+                        <b th:text="${produto.nome}">Produto A</b>
+                        <br>
+                        <small th:text="${produto.descricao}">Descrição do produto.</small>
+                        <br>
+                        <span th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco, 1, 2)}">R$ 0,00</span>
+                        <br>
+                        <a class="btn-buy" th:href="@{/loja/produto/{id}(id=${produto.id})}">Ver Detalhes</a>
+                    </div>
+                    
+                    <!-- Placeholder when no products -->
+                    <div th:if="${#lists.isEmpty(produtos)}" style="grid-column: 1 / -1;">
+                        <p class="text-center">Nenhum produto disponível no momento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+

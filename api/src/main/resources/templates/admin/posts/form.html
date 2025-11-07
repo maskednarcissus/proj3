@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${post.id != null ? 'Editar Post' : 'Novo Post'}">Post — Admin</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="wrap">
+            <div class="panel">
+                <h1 th:text="${post.id != null ? 'Editar Post' : 'Novo Post'}">Post</h1>
+                
+                <form th:action="@{/admin/posts}" th:object="${post}" method="post">
+                    <input type="hidden" th:field="*{id}">
+                    
+                    <div class="form-group">
+                        <label for="titulo">Título:</label>
+                        <input type="text" id="titulo" th:field="*{titulo}" class="form-control" required>
+                        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}" style="color: red;"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="conteudo">Conteúdo:</label>
+                        <textarea id="conteudo" th:field="*{conteudo}" class="form-control" rows="10"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" th:field="*{publicado}">
+                            Publicar
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn">Salvar</button>
+                    <a class="btn back" th:href="@{/admin/posts}">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title}">Admin — VitrineSorocabana</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="wrap">
+            <section class="panel">
+                <h1>🛠️ Painel Administrativo</h1>
+                
+                <div class="grid" style="margin-top: 12px;">
+                    <div class="card">
+                        <h3>👥 Usuários</h3>
+                        <p th:text="'Total: ' + ${totalUsuarios}">Total: 0</p>
+                        <a class="btn" th:href="@{/admin/usuarios}">Gerenciar</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📦 Produtos</h3>
+                        <p th:text="'Total: ' + ${totalProdutos}">Total: 0</p>
+                        <a class="btn" th:href="@{/admin/produtos}">Gerenciar</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📝 Posts</h3>
+                        <p th:text="'Total: ' + ${totalPosts}">Total: 0</p>
+                        <a class="btn" th:href="@{/admin/posts}">Gerenciar</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
+
