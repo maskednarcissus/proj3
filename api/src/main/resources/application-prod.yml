@@ -1,15 +1,15 @@
 spring:
-  # Production Database Configuration (PostgreSQL)
+  # Production Database Configuration (H2)
   datasource:
-    url: jdbc:postgresql://localhost:5432/vitrinedb
-    driver-class-name: org.postgresql.Driver
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
+    url: jdbc:h2:file:./data/vitrinedb;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ${DB_PASSWORD:}
   
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: false
   
   # H2 Console disabled in production
