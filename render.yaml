@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: vitrine-sorocabana
+    runtime: java
+    plan: free
+    branch: main
+    buildCommand: cd api && mvn clean package -DskipTests
+    startCommand: java -jar -Xmx512m -Xms256m api/target/vitrine-sorocabana-1.0.0.jar --spring.profiles.active=prod
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: PORT
+        value: 8080
+      - key: JAVA_OPTS
+        value: "-Xmx512m -Xms256m"
+    healthCheckPath: /
+    autoDeploy: true
+    disk:
+      name: vitrine-data
+      mountPath: /app/data
+      sizeGB: 1
+
+databases: []
+
+# Optional: Add persistent disk for H2 database
+# Note: Free tier on Render includes 512MB RAM and does not include persistent disk
+# You may need to upgrade to a paid plan for persistent storage
+

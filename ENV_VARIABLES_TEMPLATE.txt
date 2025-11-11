@@ -1,0 +1,105 @@
+==========================================================
+VitrineSorocabana - Environment Variables Template
+==========================================================
+
+This file contains all environment variables needed for
+deployment. Set these in your deployment platform's
+dashboard or CI/CD secrets.
+
+==========================================================
+APPLICATION CONFIGURATION
+==========================================================
+
+SPRING_PROFILES_ACTIVE=prod
+PORT=8080
+JAVA_OPTS=-Xmx512m -Xms256m
+
+Optional:
+DB_PASSWORD=(leave empty for H2 default, or set secure password)
+
+==========================================================
+CI/CD SECRETS (GitHub/GitLab)
+==========================================================
+
+For GitHub Actions - Add at:
+github.com/YOUR_REPO/settings/secrets/actions
+
+HEROKU_API_KEY=your_heroku_api_key
+HEROKU_APP_NAME=vitrine-sorocabana
+HEROKU_EMAIL=your_email@example.com
+RENDER_DEPLOY_HOOK_URL=https://api.render.com/deploy/srv-xxxxx
+RAILWAY_TOKEN=your_railway_token
+DOCKER_USERNAME=your_docker_username
+DOCKER_PASSWORD=your_docker_token
+
+For GitLab CI - Add at:
+gitlab.com/YOUR_REPO/-/settings/ci_cd
+
+CI_REGISTRY_USER=your_gitlab_username
+CI_REGISTRY_PASSWORD=your_gitlab_token
+FLY_API_TOKEN=your_fly_api_token
+
+==========================================================
+HOW TO GET API KEYS
+==========================================================
+
+Heroku API Key:
+1. Login to heroku.com
+2. Go to Account Settings
+3. Scroll to API Key section
+4. Click "Reveal" and copy
+
+Render Deploy Hook:
+1. Go to render.com dashboard
+2. Select your service
+3. Go to Settings
+4. Scroll to Deploy Hook
+5. Copy the URL
+
+Railway Token:
+1. Go to railway.app
+2. Click profile → Account Settings
+3. Click "Tokens"
+4. Generate new token
+
+Fly.io Token:
+1. Run: flyctl auth token
+2. Copy the token
+
+Docker Hub Token:
+1. hub.docker.com → Account Settings
+2. Security → New Access Token
+3. Copy token
+
+==========================================================
+PLATFORM-SPECIFIC SETUP
+==========================================================
+
+HEROKU:
+heroku config:set SPRING_PROFILES_ACTIVE=prod
+heroku config:set JAVA_OPTS="-Xmx512m -Xms256m"
+
+RENDER:
+Dashboard → Service → Environment
+Add: SPRING_PROFILES_ACTIVE = prod
+
+RAILWAY:
+Dashboard → Variables → New Variable
+Add: SPRING_PROFILES_ACTIVE = prod
+
+FLY.IO:
+flyctl secrets set SPRING_PROFILES_ACTIVE=prod
+
+==========================================================
+SECURITY NOTES
+==========================================================
+
+✓ Never commit secrets to git
+✓ Use environment variables, not hardcoded values
+✓ Rotate keys regularly
+✓ Use strong passwords in production
+✓ Change default admin password immediately
+✓ Enable 2FA on deployment platforms
+
+==========================================================
+

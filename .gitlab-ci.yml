@@ -1,0 +1,158 @@
+# GitLab CI/CD Pipeline for VitrineSorocabana
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  JAVA_VERSION: "17"
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+
+stages:
+  - build
+  - test
+  - package
+  - deploy
+
+cache:
+  paths:
+    - .m2/repository/
+    - api/target/
+
+# Build job
+build:
+  stage: build
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - cd api
+    - mvn clean compile
+  artifacts:
+    paths:
+      - api/target/
+    expire_in: 1 hour
+
+# Test job
+test:
+  stage: test
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - cd api
+    - mvn test
+  coverage: '/Total.*?([0-9]{1,3})%/'
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - api/target/surefire-reports/TEST-*.xml
+
+# Package job
+package:
+  stage: package
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - cd api
+    - mvn package -DskipTests
+  artifacts:
+    paths:
+      - api/target/vitrine-sorocabana-1.0.0.jar
+    expire_in: 1 week
+  only:
+    - main
+    - master
+    - tags
+
+# Docker build and push
+docker:build:
+  stage: deploy
+  image: docker:24-dind
+  services:
+    - docker:24-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA .
+    - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker push $CI_REGISTRY_IMAGE:latest
+  only:
+    - main
+    - master
+  dependencies:
+    - package
+
+# Deploy to Heroku
+deploy:heroku:
+  stage: deploy
+  image: ruby:3.2
+  before_script:
+    - gem install dpl
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+  environment:
+    name: production-heroku
+    url: https://$HEROKU_APP_NAME.herokuapp.com
+  only:
+    - main
+    - master
+  when: manual
+
+# Deploy to Render
+deploy:render:
+  stage: deploy
+  image: curlimages/curl:latest
+  script:
+    - curl -X POST $RENDER_DEPLOY_HOOK_URL
+  environment:
+    name: production-render
+    url: https://vitrine-sorocabana.onrender.com
+  only:
+    - main
+    - master
+  when: manual
+
+# Deploy to Railway
+deploy:railway:
+  stage: deploy
+  image: node:20-alpine
+  before_script:
+    - npm install -g @railway/cli
+  script:
+    - railway up
+  environment:
+    name: production-railway
+  only:
+    - main
+    - master
+  when: manual
+
+# Deploy to Fly.io
+deploy:fly:
+  stage: deploy
+  image: flyio/flyctl:latest
+  script:
+    - flyctl auth token $FLY_API_TOKEN
+    - flyctl deploy --remote-only
+  environment:
+    name: production-fly
+    url: https://vitrine-sorocabana.fly.dev
+  only:
+    - main
+    - master
+  when: manual
+
+# Manual deployment trigger
+deploy:all:
+  stage: deploy
+  script:
+    - echo "Triggering all deployments..."
+  needs:
+    - job: package
+      artifacts: true
+  only:
+    - main
+    - master
+  when: manual
+  trigger:
+    - deploy:heroku
+    - deploy:render
+    - deploy:railway
+    - deploy:fly
+
