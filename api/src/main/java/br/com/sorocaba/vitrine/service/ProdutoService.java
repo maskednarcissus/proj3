@@ -1,5 +1,6 @@
 package br.com.sorocaba.vitrine.service;
 
+import br.com.sorocaba.vitrine.dto.ProdutoDTO;
 import br.com.sorocaba.vitrine.exception.ResourceNotFoundException;
 import br.com.sorocaba.vitrine.model.Produto;
 import br.com.sorocaba.vitrine.repository.ProdutoRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service class for Produto (Product) operations
@@ -30,9 +32,22 @@ public class ProdutoService {
     }
 
     @Transactional(readOnly = true)
+    public List<ProdutoDTO> listarAtivosDTO() {
+        return produtoRepository.findByAtivoTrue()
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public Produto buscarPorId(Long id) {
         return produtoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Produto", id));
+    }
+
+    @Transactional(readOnly = true)
+    public ProdutoDTO buscarDtoPorId(Long id) {
+        return toDto(buscarPorId(id));
     }
 
     @Transactional(readOnly = true)
@@ -53,6 +68,18 @@ public class ProdutoService {
     @Transactional(readOnly = true)
     public long contarTodos() {
         return produtoRepository.count();
+    }
+
+    private ProdutoDTO toDto(Produto produto) {
+        return new ProdutoDTO(
+                produto.getId(),
+                produto.getNome(),
+                produto.getDescricao(),
+                produto.getPreco(),
+                produto.getImagemUrl(),
+                produto.getEstoque(),
+                produto.getAtivo()
+        );
     }
 }
 

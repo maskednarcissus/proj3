@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja - VitrineSorocabana</title>
+    <meta name="description" content="Produtos locais de Sorocaba">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #F7D117;
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 0.5rem 1.5rem;
+            background: #F7D117;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #C1121F;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 .highlight {
+            color: #F7D117;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: #d1d1d1;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: rgba(45, 45, 45, 0.8);
+            border: 2px solid #F7D117;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(247, 209, 23, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #C1121F, #F7D117);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(247, 209, 23, 0.2);
+            color: #F7D117;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #F7D117;
+        }
+
+        .product-description {
+            color: #d1d1d1;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #C1121F;
+            margin-bottom: 1rem;
+        }
+
+        .product-button {
+            width: 100%;
+            padding: 0.75rem;
+            background: #C1121F;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .product-button:hover {
+            background: #F7D117;
+            color: #1a1a1a;
+        }
+
+        footer {
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 2px solid #F7D117;
+            padding: 2rem;
+            text-align: center;
+            color: #d1d1d1;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">🏠 Portal</a>
+            <a href="loja.html">🛍️ Loja</a>
+            <a href="blog.html">📰 Blog</a>
+            <a href="servicos.html">🔧 Serviços</a>
+            <a href="admin.html">🛠️ Admin</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Loja <span class="highlight">Sorocabana</span></h1>
+            <p>Produtos artesanais e locais de Sorocaba</p>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">🎨</div>
+                <div class="product-info">
+                    <span class="product-category">Artesanato</span>
+                    <h3 class="product-title">Artesanato Local</h3>
+                    <p class="product-description">Peças únicas feitas por artesãos de Sorocaba</p>
+                    <p class="product-price">R$ 49,90</p>
+                    <button class="product-button">Comprar Agora</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">👕</div>
+                <div class="product-info">
+                    <span class="product-category">Moda</span>
+                    <h3 class="product-title">Camiseta Sorocaba</h3>
+                    <p class="product-description">Camisetas com estampas exclusivas da cidade</p>
+                    <p class="product-price">R$ 59,90</p>
+                    <button class="product-button">Comprar Agora</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🍯</div>
+                <div class="product-info">
+                    <span class="product-category">Alimentos</span>
+                    <h3 class="product-title">Mel Orgânico</h3>
+                    <p class="product-description">Mel puro produzido na região de Sorocaba</p>
+                    <p class="product-price">R$ 35,00</p>
+                    <button class="product-button">Comprar Agora</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">📚</div>
+                <div class="product-info">
+                    <span class="product-category">Livros</span>
+                    <h3 class="product-title">História de Sorocaba</h3>
+                    <p class="product-description">Livro sobre a história e cultura local</p>
+                    <p class="product-price">R$ 45,00</p>
+                    <button class="product-button">Comprar Agora</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🖼️</div>
+                <div class="product-info">
+                    <span class="product-category">Arte</span>
+                    <h3 class="product-title">Quadro Decorativo</h3>
+                    <p class="product-description">Arte local com paisagens de Sorocaba</p>
+                    <p class="product-price">R$ 120,00</p>
+                    <button class="product-button">Comprar Agora</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">☕</div>
+                <div class="product-info">
+                    <span class="product-category">Bebidas</span>
+                    <h3 class="product-title">Café Artesanal</h3>
+                    <p class="product-description">Café torrado e moído na região</p>
+                    <p class="product-price">R$ 28,90</p>
+                    <button class="product-button">Comprar Agora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 VitrineSorocabana - Todos os direitos reservados</p>
+        <p style="margin-top: 0.5rem; color: #F7D117;">Feito com ❤️ em Sorocaba</p>
+    </footer>
+</body>
+</html>

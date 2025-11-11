@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - VitrineSorocabana</title>
+    <meta name="description" content="Notícias e eventos de Sorocaba">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #F7D117;
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 0.5rem 1.5rem;
+            background: #F7D117;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #C1121F;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 .highlight {
+            color: #F7D117;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: #d1d1d1;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: rgba(45, 45, 45, 0.8);
+            border: 2px solid #F7D117;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(247, 209, 23, 0.3);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #C1121F, #F7D117);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-date {
+            color: #F7D117;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .article-excerpt {
+            color: #d1d1d1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .article-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #C1121F;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .article-button:hover {
+            background: #F7D117;
+            color: #1a1a1a;
+        }
+
+        footer {
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 2px solid #F7D117;
+            padding: 2rem;
+            text-align: center;
+            color: #d1d1d1;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">🏠 Portal</a>
+            <a href="loja.html">🛍️ Loja</a>
+            <a href="blog.html">📰 Blog</a>
+            <a href="servicos.html">🔧 Serviços</a>
+            <a href="admin.html">🛠️ Admin</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Blog <span class="highlight">Sorocabana</span></h1>
+            <p>Notícias, eventos e cultura de Sorocaba</p>
+        </div>
+
+        <div class="articles-grid">
+            <article class="article-card">
+                <div class="article-image">📰</div>
+                <div class="article-content">
+                    <p class="article-date">15 de Janeiro, 2025</p>
+                    <h2 class="article-title">Novidades do Comércio Local</h2>
+                    <p class="article-excerpt">
+                        Descubra as últimas tendências e inaugurações no comércio de Sorocaba. 
+                        Novos empreendedores estão transformando a cidade.
+                    </p>
+                    <a href="#" class="article-button">Ler Mais</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image">🎭</div>
+                <div class="article-content">
+                    <p class="article-date">12 de Janeiro, 2025</p>
+                    <h2 class="article-title">Eventos Culturais da Semana</h2>
+                    <p class="article-excerpt">
+                        Confira a programação cultural completa com shows, teatro e exposições 
+                        que acontecem em Sorocaba esta semana.
+                    </p>
+                    <a href="#" class="article-button">Ler Mais</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image">🏙️</div>
+                <div class="article-content">
+                    <p class="article-date">10 de Janeiro, 2025</p>
+                    <h2 class="article-title">História de Sorocaba</h2>
+                    <p class="article-excerpt">
+                        Uma viagem pela rica história de nossa cidade, desde os tropeiros 
+                        até os dias atuais como polo industrial.
+                    </p>
+                    <a href="#" class="article-button">Ler Mais</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image">🍽️</div>
+                <div class="article-content">
+                    <p class="article-date">8 de Janeiro, 2025</p>
+                    <h2 class="article-title">Gastronomia Local</h2>
+                    <p class="article-excerpt">
+                        Os melhores restaurantes e pratos típicos de Sorocaba. 
+                        Conheça a culinária que faz sucesso na região.
+                    </p>
+                    <a href="#" class="article-button">Ler Mais</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image">🌳</div>
+                <div class="article-content">
+                    <p class="article-date">5 de Janeiro, 2025</p>
+                    <h2 class="article-title">Turismo em Sorocaba</h2>
+                    <p class="article-excerpt">
+                        Descubra os pontos turísticos imperdíveis da cidade e região. 
+                        Roteiros completos para aproveitar ao máximo.
+                    </p>
+                    <a href="#" class="article-button">Ler Mais</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image">💼</div>
+                <div class="article-content">
+                    <p class="article-date">3 de Janeiro, 2025</p>
+                    <h2 class="article-title">Empreendedorismo Local</h2>
+                    <p class="article-excerpt">
+                        Histórias inspiradoras de empreendedores sorocabanos que 
+                        estão fazendo a diferença na economia local.
+                    </p>
+                    <a href="#" class="article-button">Ler Mais</a>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 VitrineSorocabana - Todos os direitos reservados</p>
+        <p style="margin-top: 0.5rem; color: #F7D117;">Feito com ❤️ em Sorocaba</p>
+    </footer>
+</body>
+</html>

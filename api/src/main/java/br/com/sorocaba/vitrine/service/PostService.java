@@ -1,5 +1,6 @@
 package br.com.sorocaba.vitrine.service;
 
+import br.com.sorocaba.vitrine.dto.PostDTO;
 import br.com.sorocaba.vitrine.exception.ResourceNotFoundException;
 import br.com.sorocaba.vitrine.model.Post;
 import br.com.sorocaba.vitrine.repository.PostRepository;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service class for Post operations
@@ -31,9 +33,22 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
+    public List<PostDTO> listarPublicadosDTO() {
+        return postRepository.findByPublicadoTrueOrderByDataPublicacaoDesc()
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public Post buscarPorId(Long id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post", id));
+    }
+
+    @Transactional(readOnly = true)
+    public PostDTO buscarDtoPorId(Long id) {
+        return toDto(buscarPorId(id));
     }
 
     @Transactional(readOnly = true)
@@ -58,6 +73,20 @@ public class PostService {
     @Transactional(readOnly = true)
     public long contarTodos() {
         return postRepository.count();
+    }
+
+    private PostDTO toDto(Post post) {
+        Long autorId = post.getAutor() != null ? post.getAutor().getId() : null;
+        String autorNome = post.getAutor() != null ? post.getAutor().getNome() : null;
+        return new PostDTO(
+                post.getId(),
+                post.getTitulo(),
+                post.getConteudo(),
+                autorId,
+                autorNome,
+                post.getPublicado(),
+                post.getDataPublicacao()
+        );
     }
 }
 

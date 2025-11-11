@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitrineSorocabana - Portal de Serviços</title>
+    <meta name="description" content="Portal de serviços e comércio local de Sorocaba">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #F7D117;
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 0.5rem 1.5rem;
+            background: #F7D117;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #C1121F;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #C1121F 0%, #8b0d16 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #F7D117;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(45, 45, 45, 0.8);
+            border: 2px solid #F7D117;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(247, 209, 23, 0.3);
+            border-color: #C1121F;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #F7D117;
+        }
+
+        .card p {
+            color: #d1d1d1;
+            line-height: 1.6;
+        }
+
+        .card-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: #C1121F;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .card-button:hover {
+            background: #F7D117;
+            color: #1a1a1a;
+        }
+
+        /* Instagram Feed */
+        .instagram-section {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .instagram-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #F7D117;
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .instagram-post {
+            position: relative;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #C1121F, #F7D117);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .instagram-post:hover {
+            transform: scale(1.05);
+        }
+
+        .instagram-post img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 2px solid #F7D117;
+            padding: 2rem;
+            text-align: center;
+            color: #d1d1d1;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">🏠 Portal</a>
+            <a href="loja.html">🛍️ Loja</a>
+            <a href="blog.html">📰 Blog</a>
+            <a href="servicos.html">🔧 Serviços</a>
+            <a href="admin.html">🛠️ Admin</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>VitrineSorocabana</h1>
+        <p>Conectando negócios e pessoas em Sorocaba. Descubra os melhores serviços, produtos e conteúdos da região.</p>
+    </section>
+
+    <div class="container">
+        <div class="cards-grid">
+            <div class="card" onclick="window.location.href='loja.html'">
+                <div class="card-icon">🛍️</div>
+                <h3>Loja Virtual</h3>
+                <p>Confira os produtos locais e apoie o comércio de Sorocaba</p>
+                <a href="loja.html" class="card-button">Ver Produtos</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='blog.html'">
+                <div class="card-icon">📰</div>
+                <h3>Blog</h3>
+                <p>Notícias, eventos e novidades sobre Sorocaba e região</p>
+                <a href="blog.html" class="card-button">Ler Artigos</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='servicos.html'">
+                <div class="card-icon">🔧</div>
+                <h3>Serviços</h3>
+                <p>Encontre os melhores profissionais da região</p>
+                <a href="servicos.html" class="card-button">Ver Serviços</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="instagram-section">
+        <h2>📸 Siga no Instagram</h2>
+        <div class="instagram-grid">
+            <div class="instagram-post" style="background: linear-gradient(135deg, #C1121F, #8b0d16);">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem;">
+                    Post 1
+                </div>
+            </div>
+            <div class="instagram-post" style="background: linear-gradient(135deg, #F7D117, #d4b014);">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #1a1a1a; font-size: 2rem;">
+                    Post 2
+                </div>
+            </div>
+            <div class="instagram-post" style="background: linear-gradient(135deg, #C1121F, #F7D117);">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem;">
+                    Post 3
+                </div>
+            </div>
+            <div class="instagram-post" style="background: linear-gradient(135deg, #8b0d16, #C1121F);">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem;">
+                    Post 4
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="https://instagram.com/vitrinesorocabana" class="card-button" style="display: inline-block;">
+                Seguir @vitrinesorocabana
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 VitrineSorocabana - Todos os direitos reservados</p>
+        <p style="margin-top: 0.5rem; color: #F7D117;">Feito com ❤️ em Sorocaba</p>
+    </footer>
+</body>
+</html>

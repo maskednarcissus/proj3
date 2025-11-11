@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Cores da Bandeira de Sorocaba */
+    --sorocaba-yellow: 49 92% 53%;      /* #F7D117 */
+    --sorocaba-red: 354 82% 41%;        /* #C1121F */
+    --sorocaba-yellow-light: 49 100% 90%; /* #FFF8CC */
+    --sorocaba-yellow-dark: 45 90% 45%;
+    --sorocaba-red-dark: 354 82% 35%;
+    
+    --background: 49 100% 97%;
+    --foreground: 0 0% 7%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+
+    --primary: 49 92% 53%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 354 82% 41%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 49 50% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 354 82% 41%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 49 60% 85%;
+    --input: 49 60% 85%;
+    --ring: 49 92% 53%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--sorocaba-red)) 0%, hsl(var(--sorocaba-yellow)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--sorocaba-yellow-light)) 0%, hsl(0 0% 100%) 100%);
+    
+    /* Shadows */
+    --shadow-card: 0 4px 20px -2px hsl(var(--sorocaba-red) / 0.1);
+    --shadow-card-hover: 0 8px 30px -4px hsl(var(--sorocaba-red) / 0.2);
+    --shadow-button: 0 2px 8px hsl(var(--sorocaba-yellow) / 0.3);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 49 92% 53%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 354 82% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 354 82% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 49 92% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
