@@ -31,7 +31,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // Public access
                 .requestMatchers("/", "/portal", "/loja/**", "/blog/**").permitAll()
-                .requestMatchers("/api/**").permitAll()
+                .requestMatchers("/api/**", "/spa/**", "/app/**").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/h2-console/**").permitAll()
                 // Admin requires authentication
                 .requestMatchers("/admin/**").hasRole("ADMIN")

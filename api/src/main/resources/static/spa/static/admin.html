@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - VitrineSorocabana</title>
+    <meta name="description" content="Painel administrativo">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #F7D117;
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 0.5rem 1.5rem;
+            background: #F7D117;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #C1121F;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.125rem;
+            color: #d1d1d1;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #F7D117;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(45, 45, 45, 0.8);
+            border: 2px solid #F7D117;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(247, 209, 23, 0.3);
+        }
+
+        .service-form {
+            background: rgba(45, 45, 45, 0.9);
+            border: 2px solid #C1121F;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #F7D117;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid #F7D117;
+            border-radius: 0.5rem;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .button {
+            padding: 0.75rem 1.5rem;
+            background: #C1121F;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 0.5rem;
+        }
+
+        .button:hover {
+            background: #F7D117;
+            color: #1a1a1a;
+        }
+
+        .button-outline {
+            background: transparent;
+            border: 2px solid #F7D117;
+            color: #F7D117;
+        }
+
+        .button-outline:hover {
+            background: #F7D117;
+            color: #1a1a1a;
+        }
+
+        .button-danger {
+            background: #dc2626;
+        }
+
+        .button-danger:hover {
+            background: #b91c1c;
+        }
+
+        .service-item {
+            background: rgba(26, 26, 26, 0.6);
+            border: 1px solid #F7D117;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .service-info {
+            flex: 1;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(247, 209, 23, 0.2);
+            color: #F7D117;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            color: #F7D117;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-description {
+            color: #d1d1d1;
+            line-height: 1.5;
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        footer {
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 2px solid #F7D117;
+            padding: 2rem;
+            text-align: center;
+            color: #d1d1d1;
+            margin-top: 4rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .service-item {
+                flex-direction: column;
+            }
+            
+            .service-actions {
+                margin-top: 1rem;
+                width: 100%;
+            }
+            
+            .service-actions button {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">🏠 Portal</a>
+            <a href="loja.html">🛍️ Loja</a>
+            <a href="blog.html">📰 Blog</a>
+            <a href="servicos.html">🔧 Serviços</a>
+            <a href="admin.html">🛠️ Admin</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>🛠️ Painel Administrativo</h1>
+            <p>Gerencie todas as funcionalidades do portal</p>
+        </div>
+
+        <section class="section">
+            <h2>Gerenciar Serviços</h2>
+            
+            <button class="button" onclick="toggleForm()">➕ Adicionar Novo Serviço</button>
+            
+            <div id="serviceForm" class="service-form hidden">
+                <h3 style="color: #F7D117; margin-bottom: 1.5rem;">
+                    <span id="formTitle">Novo Serviço</span>
+                </h3>
+                
+                <div class="form-group">
+                    <label>Ícone (emoji)</label>
+                    <input type="text" id="icon" placeholder="📋" maxlength="2">
+                </div>
+                
+                <div class="form-group">
+                    <label>Título</label>
+                    <input type="text" id="title" placeholder="Nome do serviço">
+                </div>
+                
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <input type="text" id="category" placeholder="Ex: Tecnologia, Marketing, Design">
+                </div>
+                
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea id="description" placeholder="Descrição do serviço"></textarea>
+                </div>
+                
+                <button class="button" onclick="saveService()">💾 Salvar</button>
+                <button class="button button-outline" onclick="cancelEdit()">✖️ Cancelar</button>
+            </div>
+            
+            <div id="servicesList" style="margin-top: 2rem;"></div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 VitrineSorocabana - Todos os direitos reservados</p>
+        <p style="margin-top: 0.5rem; color: #F7D117;">Feito com ❤️ em Sorocaba</p>
+    </footer>
+
+    <script>
+        let services = [];
+        let editingId = null;
+
+        // Carregar serviços do localStorage
+        function loadServices() {
+            const stored = localStorage.getItem('services');
+            services = stored ? JSON.parse(stored) : [
+                { id: 1, title: "Desenvolvimento Web", description: "Criação de sites modernos e responsivos para sua empresa", category: "Tecnologia", icon: "💻" },
+                { id: 2, title: "Marketing Digital", description: "Estratégias de marketing para impulsionar seu negócio online", category: "Marketing", icon: "📱" },
+                { id: 3, title: "Consultoria Empresarial", description: "Assessoria especializada para o crescimento do seu negócio", category: "Consultoria", icon: "📊" },
+                { id: 4, title: "Design Gráfico", description: "Criação de identidade visual e materiais gráficos profissionais", category: "Design", icon: "🎨" },
+                { id: 5, title: "Fotografia Profissional", description: "Registro profissional de eventos e produtos", category: "Mídia", icon: "📸" },
+                { id: 6, title: "Assessoria Jurídica", description: "Orientação jurídica especializada para empresas", category: "Jurídico", icon: "⚖️" }
+            ];
+            renderServices();
+        }
+
+        function renderServices() {
+            const list = document.getElementById('servicesList');
+            list.innerHTML = services.map(service => `
+                <div class="service-item">
+                    <div class="service-info">
+                        <div class="service-icon">${service.icon}</div>
+                        <span class="service-category">${service.category}</span>
+                        <h3 class="service-title">${service.title}</h3>
+                        <p class="service-description">${service.description}</p>
+                    </div>
+                    <div class="service-actions">
+                        <button class="button btn-small" onclick="editService(${service.id})">✏️ Editar</button>
+                        <button class="button button-danger btn-small" onclick="deleteService(${service.id})">🗑️ Excluir</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleForm() {
+            const form = document.getElementById('serviceForm');
+            form.classList.toggle('hidden');
+            if (!form.classList.contains('hidden')) {
+                clearForm();
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('icon').value = '';
+            document.getElementById('title').value = '';
+            document.getElementById('category').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('formTitle').textContent = 'Novo Serviço';
+            editingId = null;
+        }
+
+        function editService(id) {
+            const service = services.find(s => s.id === id);
+            if (service) {
+                document.getElementById('icon').value = service.icon;
+                document.getElementById('title').value = service.title;
+                document.getElementById('category').value = service.category;
+                document.getElementById('description').value = service.description;
+                document.getElementById('formTitle').textContent = 'Editar Serviço';
+                document.getElementById('serviceForm').classList.remove('hidden');
+                editingId = id;
+            }
+        }
+
+        function saveService() {
+            const icon = document.getElementById('icon').value;
+            const title = document.getElementById('title').value;
+            const category = document.getElementById('category').value;
+            const description = document.getElementById('description').value;
+
+            if (!title || !category || !description) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+
+            if (editingId) {
+                // Atualizar serviço existente
+                const index = services.findIndex(s => s.id === editingId);
+                services[index] = { id: editingId, icon, title, category, description };
+                alert('Serviço atualizado!');
+            } else {
+                // Adicionar novo serviço
+                const newId = Math.max(0, ...services.map(s => s.id)) + 1;
+                services.push({ id: newId, icon: icon || '📋', title, category, description });
+                alert('Serviço adicionado!');
+            }
+
+            localStorage.setItem('services', JSON.stringify(services));
+            renderServices();
+            cancelEdit();
+        }
+
+        function deleteService(id) {
+            if (confirm('Deseja realmente excluir este serviço?')) {
+                services = services.filter(s => s.id !== id);
+                localStorage.setItem('services', JSON.stringify(services));
+                renderServices();
+                alert('Serviço excluído!');
+            }
+        }
+
+        function cancelEdit() {
+            document.getElementById('serviceForm').classList.add('hidden');
+            clearForm();
+        }
+
+        // Carregar ao iniciar
+        window.addEventListener('DOMContentLoaded', loadServices);
+    </script>
+</body>
+</html>

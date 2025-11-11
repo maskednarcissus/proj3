@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - VitrineSorocabana</title>
+    <meta name="description" content="Serviços profissionais em Sorocaba">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #F7D117;
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 0.5rem 1.5rem;
+            background: #F7D117;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #C1121F;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 .highlight {
+            color: #F7D117;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: #d1d1d1;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(45, 45, 45, 0.8);
+            border: 2px solid #F7D117;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(247, 209, 23, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(247, 209, 23, 0.2);
+            color: #F7D117;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #F7D117;
+            transition: color 0.3s;
+        }
+
+        .service-card:hover .service-title {
+            color: #C1121F;
+        }
+
+        .service-description {
+            color: #d1d1d1;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-button {
+            width: 100%;
+            padding: 0.75rem;
+            background: #C1121F;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .service-button:hover {
+            background: #F7D117;
+            color: #1a1a1a;
+        }
+
+        footer {
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 2px solid #F7D117;
+            padding: 2rem;
+            text-align: center;
+            color: #d1d1d1;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">🏠 Portal</a>
+            <a href="loja.html">🛍️ Loja</a>
+            <a href="blog.html">📰 Blog</a>
+            <a href="servicos.html">🔧 Serviços</a>
+            <a href="admin.html">🛠️ Admin</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Serviços em <span class="highlight">Sorocaba</span></h1>
+            <p>Encontre os melhores serviços profissionais da região</p>
+        </div>
+
+        <div class="services-grid" id="servicesGrid">
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <span class="service-category">Tecnologia</span>
+                <h3 class="service-title">Desenvolvimento Web</h3>
+                <p class="service-description">Criação de sites modernos e responsivos para sua empresa</p>
+                <button class="service-button">Saiba Mais</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <span class="service-category">Marketing</span>
+                <h3 class="service-title">Marketing Digital</h3>
+                <p class="service-description">Estratégias de marketing para impulsionar seu negócio online</p>
+                <button class="service-button">Saiba Mais</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <span class="service-category">Consultoria</span>
+                <h3 class="service-title">Consultoria Empresarial</h3>
+                <p class="service-description">Assessoria especializada para o crescimento do seu negócio</p>
+                <button class="service-button">Saiba Mais</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <span class="service-category">Design</span>
+                <h3 class="service-title">Design Gráfico</h3>
+                <p class="service-description">Criação de identidade visual e materiais gráficos profissionais</p>
+                <button class="service-button">Saiba Mais</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📸</div>
+                <span class="service-category">Mídia</span>
+                <h3 class="service-title">Fotografia Profissional</h3>
+                <p class="service-description">Registro profissional de eventos e produtos</p>
+                <button class="service-button">Saiba Mais</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚖️</div>
+                <span class="service-category">Jurídico</span>
+                <h3 class="service-title">Assessoria Jurídica</h3>
+                <p class="service-description">Orientação jurídica especializada para empresas</p>
+                <button class="service-button">Saiba Mais</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 VitrineSorocabana - Todos os direitos reservados</p>
+        <p style="margin-top: 0.5rem; color: #F7D117;">Feito com ❤️ em Sorocaba</p>
+    </footer>
+
+    <script>
+        // Carregar serviços do localStorage (editáveis via admin)
+        function loadServices() {
+            const stored = localStorage.getItem('services');
+            if (stored) {
+                const services = JSON.parse(stored);
+                const grid = document.getElementById('servicesGrid');
+                
+                grid.innerHTML = services.map(service => `
+                    <div class="service-card">
+                        <div class="service-icon">${service.icon}</div>
+                        <span class="service-category">${service.category}</span>
+                        <h3 class="service-title">${service.title}</h3>
+                        <p class="service-description">${service.description}</p>
+                        <button class="service-button">Saiba Mais</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Carregar serviços ao abrir a página
+        window.addEventListener('DOMContentLoaded', loadServices);
+    </script>
+</body>
+</html>
