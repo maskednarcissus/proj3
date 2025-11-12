@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Produtos — Admin</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="wrap">
+            <div class="panel">
+                <h1>📦 Gerenciar Produtos</h1>
+                <a class="btn" th:href="@{/admin/produtos/novo}">➕ Novo Produto</a>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="produto : ${produtos}">
+                            <td th:text="${produto.id}">1</td>
+                            <td th:text="${produto.nome}">Produto A</td>
+                            <td th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco, 1, 2)}">R$ 0,00</td>
+                            <td th:text="${produto.estoque}">0</td>
+                            <td th:text="${produto.ativo ? 'Ativo' : 'Inativo'}">Ativo</td>
+                            <td>
+                                <a th:href="@{/admin/produtos/editar/{id}(id=${produto.id})}">Editar</a> |
+                                <form th:action="@{/admin/produtos/deletar/{id}(id=${produto.id})}" method="post" style="display: inline;">
+                                    <button type="submit" onclick="return confirm('Tem certeza?')" style="background: none; border: none; color: red; cursor: pointer;">Deletar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="margin-top: 20px;">
+                    <a class="btn back" th:href="@{/admin}">← Voltar ao Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+

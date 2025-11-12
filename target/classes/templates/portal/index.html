@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title}">Portal — VitrineSorocabana</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="container">
+            <h1 th:text="${pageTitle}">Bem-vindo à VitrineSorocabana</h1>
+            <p class="lead" th:text="${pageDescription}">Escolha um dos módulos abaixo. Tudo na mesma URL base, em subpastas.</p>
+
+            <div class="grid">
+                <section class="card">
+                    <h2>🛍️ Loja</h2>
+                    <p class="muted">Catálogo e vendas.</p>
+                    <a class="btn" th:href="@{/loja}">Abrir Loja</a>
+                </section>
+
+                <section class="card">
+                    <h2>📰 Blog</h2>
+                    <p class="muted">Notícias e atualizações.</p>
+                    <a class="btn" th:href="@{/blog}">Abrir Blog</a>
+                </section>
+
+                <section class="card">
+                    <h2>🛠️ Admin</h2>
+                    <p class="muted">Painel administrativo.</p>
+                    <a class="btn" th:href="@{/admin}">Abrir Admin</a>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
