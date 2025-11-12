@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title}">Post — Blog</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="wrap">
+            <article>
+                <h1 th:text="${post.titulo}">Título do Post</h1>
+                <small th:if="${post.dataPublicacao != null}" 
+                       th:text="'Publicado em: ' + ${#temporals.format(post.dataPublicacao, 'dd/MM/yyyy HH:mm')}">
+                    Publicado em: 01/01/2025
+                </small>
+                <div style="margin-top: 20px;" th:utext="${post.conteudo}">
+                    <p>Conteúdo completo do post...</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a class="btn back" th:href="@{/blog}">← Voltar ao Blog</a>
+                </div>
+            </article>
+        </div>
+    </main>
+</body>
+</html>
+

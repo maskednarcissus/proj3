@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Posts — Admin</title>
+</head>
+<body>
+    <main layout:fragment="content">
+        <div class="wrap">
+            <div class="panel">
+                <h1>📝 Gerenciar Posts</h1>
+                <a class="btn" th:href="@{/admin/posts/novo}">➕ Novo Post</a>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Status</th>
+                            <th>Data Publicação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post : ${posts}">
+                            <td th:text="${post.id}">1</td>
+                            <td th:text="${post.titulo}">Título do Post</td>
+                            <td th:text="${post.publicado ? 'Publicado' : 'Rascunho'}">Publicado</td>
+                            <td th:text="${post.dataPublicacao != null ? #temporals.format(post.dataPublicacao, 'dd/MM/yyyy') : '-'}">01/01/2025</td>
+                            <td>
+                                <a th:href="@{/admin/posts/editar/{id}(id=${post.id})}">Editar</a> |
+                                <form th:action="@{/admin/posts/deletar/{id}(id=${post.id})}" method="post" style="display: inline;">
+                                    <button type="submit" onclick="return confirm('Tem certeza?')" style="background: none; border: none; color: red; cursor: pointer;">Deletar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="margin-top: 20px;">
+                    <a class="btn back" th:href="@{/admin}">← Voltar ao Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
